@@ -1,0 +1,59 @@
+.grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  justify-content: center;
+  text-align: center;
+}
+
+.image {
+  width: 200px;
+}
+
+.figureList {
+  display: inline-block !important;
+  width: 200px;
+}
+
+figcaption {
+  text-align: center;
+  font-weight: bold;
+}
+
+.card {
+  padding-left: 10px;
+}
+
+.cardBodyGrid {
+  text-align: justify;
+  width: 290px;
+}
+
+.cardBodyList {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+}
+
+.overviewList {
+  display: inline-block;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.rate,
+.release {
+  text-align: center;
+}
+
+.footerList {
+  display: inline-block;
+  vertical-align: top;
+}
+// .footerList:before {
+//   content: '\00000A';
+// }
