@@ -1,10 +1,10 @@
 import axios from "axios";
-import { KEY } from "../config/constants";
+import { KEY, URL } from "../config/constants";
 
 // const KEY = process.env.API_KEY;
 
 const iniMovieApi = axios.create({
-  baseURL: `https://api.themoviedb.org/3/`,
+  baseURL: URL,
 });
 
 export const UserApi = {

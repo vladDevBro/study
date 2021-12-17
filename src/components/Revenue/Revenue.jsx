@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames/bind";
 
-import { Card } from "..";
-import { UserApi } from "../../api/api";
+import { fetchRevMovies } from "../../store/actions/actionCreators";
+import { Card, Preloader } from "..";
 import { URL_IMG } from "../../config/constants";
 
 import styles from "./Revenue.module.scss";
@@ -10,18 +11,25 @@ import styles from "./Revenue.module.scss";
 let cx = classNames.bind(styles);
 
 export const Revenue = () => {
-  const [revenue, setrevenue] = useState();
-  const list = true;
+  const { revmovies, loading, error, list } = useSelector(
+    (state) => state.revReducer
+  );
+  console.log("file: Revenue.jsx ~ line 15 ~ Revenue ~ list", list);
 
-  const getMovies = async () => {
-    const responsePopData = await UserApi.getSortRevenueMoviesProfile();
-
-    await setrevenue(responsePopData.results);
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getMovies();
-  }, []);
+    dispatch(fetchRevMovies());
+  }, [dispatch]);
+
+  if (loading) {
+    return <Preloader />;
+  }
+
+  if (error) {
+    return <h1>{error}</h1>;
+  }
+
   return (
     <>
       <section
@@ -30,8 +38,8 @@ export const Revenue = () => {
           [styles.wrapperGrid]: list === false,
         })}
       >
-        {revenue?.length &&
-          revenue.map((movie) => {
+        {revmovies?.length &&
+          revmovies.map((movie) => {
             return (
               <Card
                 key={movie.id}

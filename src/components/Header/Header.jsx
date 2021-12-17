@@ -19,7 +19,7 @@ export const Header = ({ main = false, name = "" }) => {
           [styles.titlemiddle]: main === true,
         })}
       >
-        Movie Data Base
+        The Best Movie Data Base
         <span>{name}</span>
       </div>
       <div

@@ -1,6 +1,13 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: span 4;
   gap: 20px;
+}
+
+.wrapperGrid {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.wrapperList {
+  grid-template-columns: 1fr;
+  align-items: center;
 }

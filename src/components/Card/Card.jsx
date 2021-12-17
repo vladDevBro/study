@@ -27,17 +27,21 @@ export const Card = ({ title, overview, image, releaseDate, rate, list }) => {
           [styles.cardBodyGrid]: list === false,
         })}
       >
-        <span
-          className={cx({
-            [styles.overviewList]: list === true,
-          })}
-        >
-          {overview}
-        </span>
+        {overview && (
+          <span
+            className={cx({
+              [styles.overviewList]: list === true,
+            })}
+          >
+            {overview}
+          </span>
+        )}
       </div>
       <div className={cx({ [styles.footerList]: list === true })}>
-        <h6 className={styles.rate}>IMDb: {rate}</h6>
-        <h6 className={styles.release}>Release: {releaseDate}</h6>
+        {rate && <h6 className={styles.rate}>IMDb: {rate}</h6>}
+        {releaseDate && (
+          <h6 className={styles.release}>Release: {releaseDate}</h6>
+        )}
       </div>
     </div>
   );
