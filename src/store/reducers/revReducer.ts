@@ -1,8 +1,7 @@
 import {
-  FETCH_REVENUE_MOVIE,
-  FETCH_REVENUE_MOVIE_FAILURE,
-  FETCH_REVENUE_MOVIE_SUCCESS,
-  SWITCH_VIEW_REV,
+  IRevmoviesState,
+  reviewmoviesActionTypes,
+  RewActionsTypes,
 } from "../types/types";
 
 const initList =
@@ -10,33 +9,33 @@ const initList =
     ? false
     : localStorage.getItem("listrev");
 
-const initial = {
+const initial: IRevmoviesState = {
   revmovies: [],
   loading: false,
   error: null,
   listrev: initList,
 };
 
-export const revReducer = (state = initial, action) => {
+export const revReducer = (state = initial, action: RewActionsTypes) => {
   switch (action.type) {
-    case FETCH_REVENUE_MOVIE:
+    case reviewmoviesActionTypes.FETCH_REVENUE_MOVIE:
       return { ...state, loading: true };
 
-    case FETCH_REVENUE_MOVIE_SUCCESS:
+    case reviewmoviesActionTypes.FETCH_REVENUE_MOVIE_SUCCESS:
       return {
         ...state,
         loading: false,
         revmovies: action.payload,
       };
 
-    case FETCH_REVENUE_MOVIE_FAILURE:
+    case reviewmoviesActionTypes.FETCH_REVENUE_MOVIE_FAILURE:
       return {
         ...state,
         error: action.payload,
       };
 
-    case SWITCH_VIEW_REV:
-      localStorage.setItem("listrev", !state.listrev);
+    case reviewmoviesActionTypes.SWITCH_VIEW_REV:
+      localStorage.setItem("listrev", !state.listrev + "");
       return { ...state, listrev: !state.listrev };
 
     default:

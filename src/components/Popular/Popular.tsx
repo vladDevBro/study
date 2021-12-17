@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import classNames from "classnames/bind";
 
 import { fetchPopMovies } from "../../store/actions/actionCreators";
 import { Card, Preloader } from "..";
 import { URL_IMG } from "../../config/constants";
 
+//@ts-ignore
 import styles from "./Popular.module.scss";
+import { useTypedSelectors } from "../../hooks/useTypedSelectors";
 
 let cx = classNames.bind(styles);
 
 export const Popular = () => {
-  const { popmovies, loading, error, listpop } = useSelector(
+  const { popmovies, loading, error, listpop } = useTypedSelectors(
     (state) => state.popReducer
   );
 

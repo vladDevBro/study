@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Card, Preloader } from "..";
 import { URL_IMG } from "../../config/constants";
+import { useTypedSelectors } from "../../hooks/useTypedSelectors";
 import {
   fetchPopMovies,
   fetchRevMovies,
 } from "../../store/actions/actionCreators";
 
+//@ts-ignore
 import styles from "./Main.module.scss";
 
 export const Main = () => {
@@ -16,13 +18,13 @@ export const Main = () => {
     revmovies,
     loading: revload,
     error: reverror,
-  } = useSelector((state) => state.revReducer);
+  } = useTypedSelectors((state) => state.revReducer);
 
   const {
     popmovies,
     loading: popload,
     error: poperror,
-  } = useSelector((state) => state.popReducer);
+  } = useTypedSelectors((state) => state.popReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {

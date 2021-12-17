@@ -1,42 +1,40 @@
-import {
-  FETCH_POPULAR_MOVIES,
-  FETCH_POPULAR_MOVIES_FAILURE,
-  FETCH_POPULAR_MOVIES_SUCCESS,
-  SWITCH_VIEW_POP,
-} from "../types/types";
+import { IState, PopActionsTypes, popmoviesActionTypes } from "../types/types";
 
 const initList =
   localStorage.getItem("listpop") === null
-    ? false
+    ? "false"
     : localStorage.getItem("listpop");
 
-const initial = {
+const initial: IState = {
   popmovies: [],
   loading: false,
   error: null,
   listpop: initList,
 };
 
-export const popReducer = (state = initial, action) => {
+export const popReducer = (
+  state = initial,
+  action: PopActionsTypes
+): IState => {
   switch (action.type) {
-    case FETCH_POPULAR_MOVIES:
+    case popmoviesActionTypes.FETCH_POPULAR_MOVIES:
       return { ...state, loading: true };
 
-    case FETCH_POPULAR_MOVIES_SUCCESS:
+    case popmoviesActionTypes.FETCH_POPULAR_MOVIES_SUCCESS:
       return {
         ...state,
         loading: false,
         popmovies: action.payload,
       };
 
-    case FETCH_POPULAR_MOVIES_FAILURE:
+    case popmoviesActionTypes.FETCH_POPULAR_MOVIES_FAILURE:
       return {
         ...state,
         error: action.payload,
       };
 
-    case SWITCH_VIEW_POP:
-      localStorage.setItem("listpop", !state.listpop);
+    case popmoviesActionTypes.SWITCH_VIEW_POP:
+      localStorage.setItem("listpop", !state.listpop + "");
 
       return { ...state, listpop: !state.listpop };
 

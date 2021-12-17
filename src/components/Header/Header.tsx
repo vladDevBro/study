@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
@@ -7,20 +7,21 @@ import classNames from "classnames/bind";
 import { BiHome } from "react-icons/bi";
 import { BsGrid1X2 } from "react-icons/bs";
 
+//@ts-ignore
 import styles from "./Header.module.scss";
 import { switchlist, switchPop } from "../../store/actions/actionCreators";
+import { HeaderProps } from "./Header.props";
 
 let cx = classNames.bind(styles);
 
-export const Header = ({ main = false, name = "" }) => {
+export const Header: FC<HeaderProps> = ({
+  main = false,
+  name = "",
+}: HeaderProps) => {
   const { location } = useHistory();
 
   const dispatch = useDispatch();
   const changeLayout = () => {
-    console.log(
-      "file: Header.jsx ~ line 21 ~ changeLayout ~ location.pathname",
-      location.pathname
-    );
     if (location.pathname === "/popular") {
       dispatch(switchPop());
     } else if (location.pathname === "/revenue") {

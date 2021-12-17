@@ -1,4 +1,6 @@
 import React from "react";
+// import error from "../assets/error404.jpg";
+//@ts-ignore
 import error from "../assets/error404.jpg";
 
 export const NotFound = () => {

@@ -1,11 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
 import classNames from "classnames/bind";
 
+//@ts-ignore
 import styles from "./Card.module.scss";
+import { CardProps } from "./Card.props";
 
 let cx = classNames.bind(styles);
 
-export const Card = ({ title, overview, image, releaseDate, rate, list }) => {
+export const Card: FC<CardProps> = ({
+  title,
+  overview,
+  image,
+  releaseDate,
+  rate,
+  list,
+}: CardProps) => {
   return (
     <div
       className={cx(styles.card, {
