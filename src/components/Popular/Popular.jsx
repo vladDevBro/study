@@ -11,10 +11,9 @@ import styles from "./Popular.module.scss";
 let cx = classNames.bind(styles);
 
 export const Popular = () => {
-  const { popmovies, loading, error, list } = useSelector(
+  const { popmovies, loading, error, listpop } = useSelector(
     (state) => state.popReducer
   );
-  console.log("file: Popular.jsx ~ line 15 ~ Popular ~ list", list);
 
   const dispatch = useDispatch();
 
@@ -33,8 +32,8 @@ export const Popular = () => {
   return (
     <section
       className={cx(styles.wrapper, {
-        [styles.wrapperList]: list === true,
-        [styles.wrapperGrid]: list === false,
+        [styles.wrapperList]: listpop === true,
+        [styles.wrapperGrid]: listpop === false,
       })}
     >
       {popmovies?.length &&
@@ -42,7 +41,7 @@ export const Popular = () => {
           return (
             <Card
               key={movie.id}
-              list={list}
+              list={listpop}
               title={movie.title}
               overview={movie.overview}
               image={`${URL_IMG}${movie.poster_path}`}

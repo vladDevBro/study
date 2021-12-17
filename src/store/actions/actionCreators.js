@@ -6,6 +6,8 @@ import {
   FETCH_REVENUE_MOVIE,
   FETCH_REVENUE_MOVIE_FAILURE,
   FETCH_REVENUE_MOVIE_SUCCESS,
+  SWITCH_VIEW_POP,
+  SWITCH_VIEW_REV,
 } from "../types/types";
 
 const fetchMoviesAC = () => {
@@ -27,6 +29,12 @@ const fetchRevMoviesSuccessAC = (payload) => {
 const fetchRevMoviesErrorAC = () => {
   return { type: FETCH_REVENUE_MOVIE_FAILURE, payload: "Error" };
 };
+export const switchPop = () => {
+  return { type: SWITCH_VIEW_POP };
+};
+export const switchlist = () => {
+  return { type: SWITCH_VIEW_REV };
+};
 
 export const fetchPopMovies = () => {
   return async (dispatch) => {
@@ -45,13 +53,9 @@ export const fetchRevMovies = () => {
     try {
       dispatch(fetchRevMoviesAC());
       const response = await UserApi.getSortRevenueMoviesProfile();
-      setTimeout(
-        () => {
-          dispatch(fetchRevMoviesSuccessAC(response.results));
-        },
-
-        1000
-      );
+      setTimeout(() => {
+        dispatch(fetchRevMoviesSuccessAC(response.results));
+      }, 1000);
     } catch (error) {
       fetchRevMoviesErrorAC();
     }

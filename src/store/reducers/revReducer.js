@@ -5,40 +5,39 @@ import {
   SWITCH_VIEW_REV,
 } from "../types/types";
 
-const initList = localStorage.getItem("list") === null && false;
-console.log("file: revReducer.js ~ line 9 ~ initList", initList);
+const initList =
+  localStorage.getItem("listrev") === null
+    ? false
+    : localStorage.getItem("listrev");
 
 const initial = {
   revmovies: [],
   loading: false,
   error: null,
-  list: initList,
+  listrev: initList,
 };
 
 export const revReducer = (state = initial, action) => {
   switch (action.type) {
     case FETCH_REVENUE_MOVIE:
-      return { loading: true, error: null, revmovies: [], list: false };
+      return { ...state, loading: true };
 
     case FETCH_REVENUE_MOVIE_SUCCESS:
       return {
+        ...state,
         loading: false,
-        error: null,
         revmovies: action.payload,
-        list: false,
       };
 
     case FETCH_REVENUE_MOVIE_FAILURE:
       return {
-        loading: false,
+        ...state,
         error: action.payload,
-        revmovies: [],
-        list: false,
       };
 
     case SWITCH_VIEW_REV:
-      localStorage.setItem("list", !state.list);
-      return { ...state, list: !state.list };
+      localStorage.setItem("listrev", !state.listrev);
+      return { ...state, listrev: !state.listrev };
 
     default:
       return state;

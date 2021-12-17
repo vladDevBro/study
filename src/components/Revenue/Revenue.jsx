@@ -11,10 +11,10 @@ import styles from "./Revenue.module.scss";
 let cx = classNames.bind(styles);
 
 export const Revenue = () => {
-  const { revmovies, loading, error, list } = useSelector(
+  const { revmovies, loading, error, listrev } = useSelector(
     (state) => state.revReducer
   );
-  console.log("file: Revenue.jsx ~ line 15 ~ Revenue ~ list", list);
+  console.log("file: Revenue.jsx ~ line 15 ~ Revenue ~ listrev", listrev);
 
   const dispatch = useDispatch();
 
@@ -34,8 +34,8 @@ export const Revenue = () => {
     <>
       <section
         className={cx(styles.wrapper, {
-          [styles.wrapperList]: list === true,
-          [styles.wrapperGrid]: list === false,
+          [styles.wrapperList]: listrev === true,
+          [styles.wrapperGrid]: listrev === false,
         })}
       >
         {revmovies?.length &&
@@ -43,7 +43,7 @@ export const Revenue = () => {
             return (
               <Card
                 key={movie.id}
-                list={list}
+                list={listrev}
                 title={movie.title}
                 overview={movie.overview}
                 image={URL_IMG + movie.poster_path}
